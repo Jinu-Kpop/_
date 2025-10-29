@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jinu Kpop - Tech & KPDH Fan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- Basic Reset --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+    body { background: linear-gradient(135deg, #87CEEB, #E0FFFF); color: #333; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+    
+    /* --- Container --- */
+    .container { text-align: center; max-width: 800px; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); backdrop-filter: blur(10px); animation: fadeIn 2s ease-in; }
+    
+    /* --- Title --- */
+    h1 { font-size: 3rem; margin-bottom: 10px; color: #003366; animation: slideDown 1s ease-out; }
+    h2 { font-size: 1.5rem; margin-bottom: 30px; color: #0055AA; animation: fadeIn 2s ease-in; }
+
+    /* --- Buttons --- */
+    .buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+    .btn { padding: 15px 25px; font-size: 1rem; font-weight: 600; color: white; background: #0077CC; border: none; border-radius: 50px; cursor: pointer; text-decoration: none; transition: 0.3s; position: relative; overflow: hidden; }
+    .btn:hover { background: #0055AA; transform: scale(1.05); }
+    .btn::after { content: ''; position: absolute; width: 100%; height: 100%; top: 0; left: -100%; background: rgba(255,255,255,0.2); transition: 0.4s; }
+    .btn:hover::after { left: 0; }
+
+    /* --- Animations --- */
+    @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+    @keyframes slideDown { 0% { transform: translateY(-50px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+
+    /* --- Footer --- */
+    footer { margin-top: 40px; font-size: 0.9rem; color: #003366; animation: fadeIn 3s ease-in; }
+    
+    /* --- Floating Animation --- */
+    .floating { animation: float 3s ease-in-out infinite; }
+    @keyframes float {
+      0%,100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container floating">
+    <h1>Jinu Kpop</h1>
+    <h2>Tech Lover & KPDH Fanatic</h2>
+    
+    <div class="buttons">
+      <a class="btn" href="https://discord.gg/UEFJc6AdS9" target="_blank">Discord: IDK Community</a>
+      <a class="btn" href="https://github.com/Jinu-Kpop" target="_blank">GitHub</a>
+      <a class="btn" href="https://open.spotify.com/user/31dqjjdh6z7iv6h2uicfxpzorwpi?si=a4c07eab4856416d" target="_blank">Spotify Profile</a>
+      <a class="btn" href="https://open.spotify.com/playlist/6NzQaVaofrf9kpRCx0sKkj?si=82f9aaec729b46f0" target="_blank">KPDH Popular Songs</a>
+      <a class="btn" href="https://open.spotify.com/playlist/6z81HIUuSRHymGh8D5lX1t?si=e81c056c630741e1" target="_blank">All KPDH Songs</a>
+    </div>
+
+    <footer>Connect with me: <strong>Discord: jinu_kpop</strong></footer>
+  </div>
+
+  <!-- Optional JS for fancy effects -->
+  <script>
+    // Floating buttons animation (random small movement)
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        btn.style.transform = `translate(${(x - rect.width/2)/20}px, ${(y - rect.height/2)/20}px) scale(1.05)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0,0) scale(1)';
+      });
+    });
+  </script>
+</body>
+</html>
