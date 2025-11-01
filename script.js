@@ -1,104 +1,70 @@
-<!-- FILE: script.js -->
-// init theme
-setTheme(localStorage.getItem('jk_theme')||'dark');
-themeToggle.addEventListener('click', ()=>{ setTheme(document.body.classList.contains('light')? 'dark':'light'); });
-
-
-// Music controls
-const musicPanel = document.getElementById('music-controls');
-const spotifyEmbed = document.getElementById('spotify-embed');
-const spotifyLinkInput = document.getElementById('spotify-link');
-const customAudioInput = document.getElementById('custom-audio-link');
-const customAudio = document.getElementById('custom-audio');
-const playPause = document.getElementById('play-pause');
-const musicToggleBtn = document.getElementById('music-toggle');
-
-
-// initialize embed
-const defaultEmbed = musicPanel.dataset.spotify;
-function applySpotifyLink(link){
-// try to normalize share links to embed URL
-if(!link) { spotifyEmbed.src = defaultEmbed; spotifyEmbed.style.display = 'block'; customAudio.style.display = 'none'; return; }
-if(link.includes('open.spotify.com')){
-// embed format
-const id = link.split('/').pop().split('?')[0];
-if(link.includes('/playlist/')) spotifyEmbed.src = `https://open.spotify.com/embed/playlist/${id}`;
-else if(link.includes('/track/')) spotifyEmbed.src = `https://open.spotify.com/embed/track/${id}`;
-else if(link.includes('/album/')) spotifyEmbed.src = `https://open.spotify.com/embed/album/${id}`;
-else spotifyEmbed.src = link; // fallback
-spotifyEmbed.style.display = 'block'; customAudio.style.display = 'none';
-} else if(link.startsWith('https://') && (link.endsWith('.mp3') || link.endsWith('.ogg') || link.endsWith('.wav'))){
-// custom audio raw file
-customAudio.src = link; spotifyEmbed.style.display = 'none'; customAudio.style.display = 'block';
-} else {
-// fallback: place into embed if looks like embed url
-spotifyEmbed.src = link; spotifyEmbed.style.display = 'block'; customAudio.style.display = 'none';
+// Starfield
+const canvas = document.getElementById("starfield");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+let stars = Array(200).fill().map(() => ({
+  x: Math.random() * canvas.width,
+  y: Math.random() * canvas.height,
+  z: Math.random() * canvas.width
+}));
+function animateStars() {
+  ctx.fillStyle = "black";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  for (let s of stars) {
+    s.z -= 2;
+    if (s.z <= 0) s.z = canvas.width;
+    const k = 128 / s.z;
+    const px = s.x * k + canvas.width / 2;
+    const py = s.y * k + canvas.height / 2;
+    if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
+      const size = (1 - s.z / canvas.width) * 2;
+      ctx.fillStyle = "white";
+      ctx.fillRect(px, py, size, size);
+    }
+  }
+  requestAnimationFrame(animateStars);
 }
-}
-applySpotifyLink(defaultEmbed);
+animateStars();
 
+// Music system
+const player = new Audio();
+let playlist = [];
+let index = 0;
 
-playPause.addEventListener('click', ()=>{
-if(customAudio.style.display === 'block'){
-if(customAudio.paused){ customAudio.play(); playPause.innerHTML = '<i class="fa-solid fa-pause"></i> Pause' }
-else { customAudio.pause(); playPause.innerHTML = '<i class="fa-solid fa-play"></i> Play' }
-} else {
-// control is limited for Spotify embed — we'll toggle visibility as a pseudo-play
-if(spotifyEmbed.style.opacity==='0' || !spotifyEmbed.style.opacity){ spotifyEmbed.style.opacity=1; playPause.innerHTML = '<i class="fa-solid fa-pause"></i> Pause' }
-else { spotifyEmbed.style.opacity=0.6; playPause.innerHTML = '<i class="fa-solid fa-play"></i> Play' }
-}
+fetch("songs.json").then(r=>r.json()).then(data=>{
+  playlist = data.songs;
+  if(playlist.length === 1){
+    player.src = playlist[0].url;
+    player.loop = true;
+    player.play();
+    document.getElementById("songName").textContent = playlist[0].name;
+  }
 });
 
-
-spotifyLinkInput.addEventListener('change', ()=> applySpotifyLink(spotifyLinkInput.value.trim()) );
-customAudioInput.addEventListener('change', ()=> applySpotifyLink(customAudioInput.value.trim()) );
-
-
-musicToggleBtn.addEventListener('click', ()=>{ musicPanel.classList.toggle('open'); musicPanel.querySelector('input')?.focus(); });
-
-
-// Keyboard shortcuts
-addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='m'){ // toggle audio
-if(customAudio.style.display==='block'){ customAudio.paused? customAudio.play(): customAudio.pause(); }
-}
+document.getElementById("playPause").addEventListener("click",()=>{
+  if(player.paused){
+    player.play();
+    playPause.textContent = "⏸";
+  } else {
+    player.pause();
+    playPause.textContent = "▶";
+  }
+});
+document.getElementById("volume").addEventListener("input",e=>{
+  player.volume = e.target.value;
 });
 
-
-// Logo click easter egg
-const logo = document.getElementById('logo');
-let logoClicks = 0;
-logo.addEventListener('click', ()=>{ logoClicks++; if(logoClicks>=5){ document.getElementById('secret-modal').hidden = false; document.getElementById('secret-modal').querySelector('#close-secret').focus(); logoClicks = 0; } setTimeout(()=>{ logoClicks=0 },3000); });
-
-
-// close secret
-document.getElementById('close-secret').addEventListener('click', ()=>{ document.getElementById('secret-modal').hidden=true });
-
-
-// Konami code detection
-const konami = [38,38,40,40,37,39,37,39,66,65];
-let konamiProgress = 0; window.addEventListener('keydown', (e)=>{
-if(e.keyCode === konami[konamiProgress]) konamiProgress++; else konamiProgress=0;
-if(konamiProgress === konami.length){ document.querySelector('.card').classList.add('ambient-ultra'); // burst
-for(let i=0;i<30;i++) shootStar(); konamiProgress=0; setTimeout(()=> document.querySelector('.card').classList.remove('ambient-ultra'), 8000);
-}
+// Fun modal & logo easter egg
+const logo = document.getElementById("logo");
+const modal = document.getElementById("funModal");
+let clickCount = 0;
+logo.addEventListener("click",()=>{
+  clickCount++;
+  if(clickCount === 5){
+    new Audio("assets/jingle.mp3").play();
+    modal.style.display = "flex";
+    setTimeout(()=> modal.style.display="none", 3000);
+    clickCount = 0;
+  }
 });
-
-
-// small accessibility: open spotify input when spotify open button clicked
-const spotifyOpenBtn = document.getElementById('spotify-open'); spotifyOpenBtn.addEventListener('click', (e)=>{ e.preventDefault(); musicPanel.classList.add('open'); spotifyLinkInput.focus() });
-
-
-// defensive: stop animations on visibility change
-addEventListener('visibilitychange', ()=>{ if(document.hidden) cancelAnimationFrame(animId); else loop(); });
-
-
-// small mobile-friendly touch transform for buttons
-const linkBtns = document.querySelectorAll('.link-btn');
-linkBtns.forEach(b=>{ b.addEventListener('touchstart', ()=> b.style.transform='translateY(-6px)'); b.addEventListener('touchend', ()=> b.style.transform='translateY(0)'); });
-
-
-// final small: ensure iframe has initial src
-if(!spotifyEmbed.src) spotifyEmbed.src = defaultEmbed;
-
-
-// End of script.js
