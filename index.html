@@ -1,90 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jinu | Tech + KPDH</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jinu | K-Pop Demon Hunter</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
-<body>
 
-  <!-- Background Music -->
+<body>
   <audio id="bg-music" loop autoplay></audio>
 
-  <!-- Floating Control Bubble -->
-  <div id="control-bubble" class="bubble">
-    <img src="assets/logo.png" alt="Bubble Menu" />
+  <!-- Control Bubble -->
+  <div class="bubble" id="controlBubble">
+    <div class="menu">
+      <button id="playPause">▶️ / ⏸️</button>
+      <input type="range" id="volume" min="0" max="1" step="0.01">
+      <button id="modeToggle">🌙</button>
+      <button id="accountBtn">👤</button>
+    </div>
   </div>
 
-  <div id="control-panel" class="panel hidden">
-    <button id="playPause">⏯ Play/Pause</button>
-    <input id="volume" type="range" min="0" max="1" step="0.01" value="0.6" />
-    <button id="theme-toggle">🌓 Mode</button>
-    <button id="login-btn">👤 Account</button>
-    <button id="achievements-btn">🏆 Achievements</button>
+  <!-- Account Modal -->
+  <div id="accountModal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Account</h2>
+      <div id="accountArea"></div>
+      <button id="closeAccount">Close</button>
+    </div>
   </div>
 
-  <!-- About Me Section -->
+  <!-- About Section -->
   <section id="about">
-    <img src="assets/profile.jpg" alt="Profile" class="profile-img" />
+    <img src="assets/profile.jpg" class="profile-img" alt="Profile">
     <h1>Hey, I’m Jinu!</h1>
-    <p>
-      Tech runs through my veins. Whenever there’s a new gadget, app, or breakthrough, I’m on it—testing, exploring, and geeking out like there’s no tomorrow. Technology isn’t just what I do; it’s how I see the world.
-    </p>
-    <p>
-      I’m friendly, positive, and open-minded, but here’s the deal: life’s too short for negativity, so I don’t have time for hate or toxic vibes. Keep it kind, or keep walking!
-    </p>
-    <p>
-      Big fan alert: I absolutely love KPDH (K-Pop Demon Hunter) from Sony Animation. Its energy, story, and style? Legendary. Oh, and my favorite color? Sky blue—calm, limitless, and inspiring, just like how I try to approach life.
-    </p>
-    <p>
-      Am I perfect? Nope. Like everyone, I stumble, learn, and grow every day. But that’s what makes life exciting—and keeps things real.
-    </p>
-    <p>
-      This space is where I share my tech obsessions, discoveries, and ideas—all served with a dash of positivity and curiosity. So stick around, explore, and let’s see what’s possible together!
-    </p>
+    <p>Tech runs through my veins. Whenever there’s a new gadget, app, or breakthrough, I’m on it—testing, exploring, and geeking out like there’s no tomorrow.</p>
+    <p>Technology isn’t just what I do; it’s how I see the world...</p>
   </section>
 
   <!-- Links Section -->
   <section id="links">
-    <h2>Find Me</h2>
+    <h2>My Links</h2>
     <div class="link-card">
-      <a href="https://discord.gg/UEFJc6AdS9" target="_blank">Discord Server</a>
-      <p>IDK Community — Friendly people & active moderation.</p>
+      <a href="https://discord.gg/UEFJc6AdS9" target="_blank">IDK Community</a>
+      <p>A friendly community with active moderation and kind people.</p>
     </div>
-
     <div class="link-card">
-      <a href="https://github.com/Jinu-Kpop" target="_blank">GitHub Profile</a>
-      <p>Where I make, test, and build projects.</p>
+      <a href="https://github.com/Jinu-Kpop" target="_blank">My GitHub</a>
+      <p>Where I test and make projects.</p>
     </div>
-
     <div class="link-card">
       <a href="https://open.spotify.com/user/31dqjjdh6z7iv6h2uicfxpzorwpi?si=e1304dc650564a56" target="_blank">Spotify Profile</a>
-      <p>My music world 🎶</p>
     </div>
-
-    <div class="link-card">
-      <a href="https://open.spotify.com/playlist/6NzQaVaofrf9kpRCx0sKkj" target="_blank">KPDH Best Songs Playlist</a>
-    </div>
-
-    <div class="link-card">
-      <a href="https://open.spotify.com/playlist/6z81HIUuSRHymGh8D5lX1t" target="_blank">KPDH All Songs Playlist</a>
-    </div>
-
-    <p class="discord-user">Discord Username: <b>jinu_kpop</b></p>
   </section>
 
-  <!-- Achievement Popup -->
-  <div id="achievement-popup" class="hidden"></div>
+  <!-- Achievements -->
+  <section id="achievements">
+    <h2>Achievements</h2>
+    <ul id="achievementsList"></ul>
+  </section>
 
-  <!-- Funny GIF Section -->
-  <img src="assets/funny.gif" alt="Funny" class="funny" />
-
-  <script src="js/app.js"></script>
-  <script src="js/music.js"></script>
-  <script src="js/theme.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/achievements.js"></script>
-
+  <footer>
+    <p>© 2025 Jinu | Built with ❤️ and tech passion</p>
+  </footer>
 </body>
 </html>
