@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.5s ease;
+  overflow-x: hidden;
+}
+
+:root {
+  --bg: #eaf6ff;
+  --text: #222;
+  --accent: #69b3f9;
+}
+
+.dark {
+  --bg: #101010;
+  --text: #fff;
+  --accent: #5ecfff;
+}
+
+.bubble {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 70px;
+  height: 70px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px var(--accent);
+  cursor: pointer;
+  z-index: 1000;
+  animation: float 4s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.panel {
+  position: fixed;
+  bottom: 110px;
+  right: 30px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 0 10px var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.hidden { display: none; }
+
+.profile-img {
+  width: 150px;
+  border-radius: 50%;
+  margin-top: 20px;
+  box-shadow: 0 0 20px var(--accent);
+}
+
+h1, h2 {
+  color: var(--accent);
+}
+
+.link-card {
+  background: rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding: 10px;
+  margin: 10px 0;
+  transition: transform 0.3s;
+}
+
+.link-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--accent);
+}
+
+.funny {
+  width: 120px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+#achievement-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--accent);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  display: none;
+}
