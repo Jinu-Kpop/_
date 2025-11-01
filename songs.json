@@ -1,8 +1,7 @@
-{
-  "songs": [
-    {
-      "name": "KPDH Theme",
-      "url": "assets/songs/song1.mp3"
-    }
-  ]
-}
+[
+  {
+    "title": "The Storyteller",
+    "artist": "Fugee x Thaehan",
+    "url": "assets/songs/The Storyteller.mp3"
+  }
+]
