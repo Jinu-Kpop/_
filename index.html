@@ -1,181 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Jinu Kpop — Cute Futuristic</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jinu | Tech + KPDH</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <canvas id="stars" aria-hidden="true"></canvas>
 
-  <header class="topbar">
-    <div id="logo" class="logo" title="Jinu Kpop — click me (5x)">
-      <img id="logo-img" src="assets/logo.png" alt="Jinu logo" onerror="this.src='https://i.imgur.com/BfvICIa.png'">
-    </div>
-    <div class="top-actions">
-      <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
-    </div>
-  </header>
+  <!-- Background Music -->
+  <audio id="bg-music" loop autoplay></audio>
 
-  <main class="card" role="main" id="main-card">
-    <section class="hero">
-      <h1>Jinu Kpop</h1>
-      <p class="subtitle">Cute Futuristic • Tech Lover • KPDH Fan</p>
-
-      <div class="about">
-        <h3>About me</h3>
-        <p class="about-text">
-          Hey, I’m Jinu!<br><br>
-          Tech runs through my veins. Whenever there’s a new gadget, app, or breakthrough, I’m on it—testing, exploring, and geeking out like there’s no tomorrow. Technology isn’t just what I do; it’s how I see the world.<br><br>
-          I’m friendly, positive, and open-minded, but here’s the deal: life’s too short for negativity, so I don’t have time for hate or toxic vibes. Keep it kind, or keep walking!<br><br>
-          Big fan alert: I absolutely love KPDH (K-Pop Demon Hunter) from Sony Animation. Its energy, story, and style? Legendary. Oh, and my favorite color? Sky blue—calm, limitless, and inspiring.<br><br>
-          Am I perfect? Nope. Like everyone, I stumble, learn, and grow every day. But that’s what makes life exciting—and keeps things real. This space is where I share my tech obsessions, discoveries, and ideas—all served with a dash of positivity and curiosity.
-        </p>
-      </div>
-
-      <div class="links-grid">
-        <article class="link-card">
-          <a class="link-btn" href="https://discord.gg/UEFJc6AdS9" target="_blank" rel="noopener">
-            <i class="fa-brands fa-discord"></i>
-            <div>
-              <div class="label">Discord: IDK Community</div>
-              <div class="desc">Join our server for chats, events, and bot projects.</div>
-            </div>
-          </a>
-        </article>
-
-        <article class="link-card">
-          <a class="link-btn" href="https://github.com/Jinu-Kpop" target="_blank" rel="noopener">
-            <i class="fa-brands fa-github"></i>
-            <div>
-              <div class="label">GitHub</div>
-              <div class="desc">My projects, bots, and code (open-source).</div>
-            </div>
-          </a>
-        </article>
-
-        <article class="link-card">
-          <a class="link-btn" href="https://open.spotify.com/user/31dqjjdh6z7iv6h2uicfxpzorwpi?si=a4c07eab4856416d" target="_blank" rel="noopener">
-            <i class="fa-brands fa-spotify"></i>
-            <div>
-              <div class="label">Spotify Profile</div>
-              <div class="desc">Follow my profile for playlists and favorites.</div>
-            </div>
-          </a>
-        </article>
-
-        <article class="link-card">
-          <a class="link-btn" href="https://open.spotify.com/playlist/6NzQaVaofrf9kpRCx0sKkj?si=82f9aaec729b46f0" target="_blank" rel="noopener">
-            <i class="fa-solid fa-music"></i>
-            <div>
-              <div class="label">KPDH Popular Songs</div>
-              <div class="desc">Curated playlist of top KPDH tracks.</div>
-            </div>
-          </a>
-        </article>
-
-        <article class="link-card">
-          <a class="link-btn" href="https://open.spotify.com/playlist/6z81HIUuSRHymGh8D5lX1t?si=e81c056c630741e1" target="_blank" rel="noopener">
-            <i class="fa-solid fa-list"></i>
-            <div>
-              <div class="label">All KPDH Songs</div>
-              <div class="desc">Deep dive playlist for serious fans.</div>
-            </div>
-          </a>
-        </article>
-
-        <article class="link-card">
-          <a class="link-btn" href="https://drive.google.com/drive/folders/1NaMhVAtrKCwAkvRWqgUksfBSYDmZv-qM?usp=sharing" target="_blank" rel="noopener">
-            <i class="fa-solid fa-cloud-arrow-down"></i>
-            <div>
-              <div class="label">My Songs (Google Drive)</div>
-              <div class="desc">Click to view the Drive folder; or import file links into the player below.</div>
-            </div>
-          </a>
-        </article>
-      </div>
-
-      <p class="hint">Tip: open the big music bubble below (bottom-right) to control songs. Use the Drive importer to paste shared file links, or upload MP3s to your repo and list them in <code>songs.json</code>.</p>
-    </section>
-
-    <footer class="card-footer">Connect: <strong>Discord: jinu_kpop</strong> • Built with 💙</footer>
-  </main>
-
-  <!-- SECRET modal -->
-  <div id="secret-modal" class="modal" hidden aria-hidden="true">
-    <div class="modal-inner">
-      <img src="assets/fun.png" alt="Fun" onerror="this.src='https://i.imgur.com/jAJz9Jz.png'">
-      <h3>🎉 Secret Fan Card</h3>
-      <p>You discovered a hidden gift. Use code <strong>JINU-STAR</strong> ❤️</p>
-      <button id="secret-close" class="btn">Close</button>
-    </div>
+  <!-- Floating Control Bubble -->
+  <div id="control-bubble" class="bubble">
+    <img src="assets/logo.png" alt="Bubble Menu" />
   </div>
 
-  <!-- BIG draggable music bubble -->
-  <div id="player" class="player" aria-hidden="true" hidden>
-    <div class="player-top">
-      <div id="drag-handle" class="drag">☰</div>
-      <div id="player-title" class="player-title">No song loaded</div>
-      <div class="player-actions">
-        <button id="account-btn" class="small-btn" title="Sign in to save achievements"><i class="fa-solid fa-user"></i></button>
-        <button id="player-close" class="icon-btn" title="Hide player"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-    </div>
-
-    <div class="player-middle">
-      <div class="controls">
-        <button id="prev" class="icon-btn"><i class="fa-solid fa-backward-step"></i></button>
-        <button id="play" class="play-btn"><i class="fa-solid fa-play"></i></button>
-        <button id="next" class="icon-btn"><i class="fa-solid fa-forward-step"></i></button>
-      </div>
-
-      <div class="progress-row">
-        <input id="seek" type="range" min="0" max="100" value="0" />
-        <div class="time">
-          <span id="curTime">0:00</span> / <span id="durTime">0:00</span>
-        </div>
-      </div>
-
-      <div class="volume-row">
-        <button id="vol-down" class="icon-btn">-</button>
-        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.85" />
-        <button id="vol-up" class="icon-btn">+</button>
-      </div>
-
-      <div class="playlist-area">
-        <div class="playlist-header">Playlist</div>
-        <div id="playlist" class="playlist"></div>
-        <div class="import-row">
-          <input id="gdrive-input" placeholder="Paste Google Drive file links (one per line)" />
-          <button id="import-gdrive" class="btn">Import</button>
-        </div>
-      </div>
-
-      <div class="achievements">
-        <div class="ach-title">Achievements</div>
-        <div id="ach-list" class="ach-list"></div>
-        <button id="claim-all" class="btn">Claim all visible</button>
-      </div>
-    </div>
+  <div id="control-panel" class="panel hidden">
+    <button id="playPause">⏯ Play/Pause</button>
+    <input id="volume" type="range" min="0" max="1" step="0.01" value="0.6" />
+    <button id="theme-toggle">🌓 Mode</button>
+    <button id="login-btn">👤 Account</button>
+    <button id="achievements-btn">🏆 Achievements</button>
   </div>
 
-  <!-- Sign-in overlay (mock) -->
-  <div id="signin" class="signin" hidden>
-    <div class="signin-inner">
-      <h3>Sign in (local)</h3>
-      <p>Enter a username to save achievements locally (no password, stored in your browser).</p>
-      <input id="signin-name" placeholder="Enter username" />
-      <div class="row">
-        <button id="signin-save" class="btn">Save</button>
-        <button id="signin-cancel" class="btn ghost">Cancel</button>
-      </div>
-    </div>
-  </div>
+  <!-- About Me Section -->
+  <section id="about">
+    <img src="assets/profile.jpg" alt="Profile" class="profile-img" />
+    <h1>Hey, I’m Jinu!</h1>
+    <p>
+      Tech runs through my veins. Whenever there’s a new gadget, app, or breakthrough, I’m on it—testing, exploring, and geeking out like there’s no tomorrow. Technology isn’t just what I do; it’s how I see the world.
+    </p>
+    <p>
+      I’m friendly, positive, and open-minded, but here’s the deal: life’s too short for negativity, so I don’t have time for hate or toxic vibes. Keep it kind, or keep walking!
+    </p>
+    <p>
+      Big fan alert: I absolutely love KPDH (K-Pop Demon Hunter) from Sony Animation. Its energy, story, and style? Legendary. Oh, and my favorite color? Sky blue—calm, limitless, and inspiring, just like how I try to approach life.
+    </p>
+    <p>
+      Am I perfect? Nope. Like everyone, I stumble, learn, and grow every day. But that’s what makes life exciting—and keeps things real.
+    </p>
+    <p>
+      This space is where I share my tech obsessions, discoveries, and ideas—all served with a dash of positivity and curiosity. So stick around, explore, and let’s see what’s possible together!
+    </p>
+  </section>
 
-  <script src="script.js" type="module"></script>
+  <!-- Links Section -->
+  <section id="links">
+    <h2>Find Me</h2>
+    <div class="link-card">
+      <a href="https://discord.gg/UEFJc6AdS9" target="_blank">Discord Server</a>
+      <p>IDK Community — Friendly people & active moderation.</p>
+    </div>
+
+    <div class="link-card">
+      <a href="https://github.com/Jinu-Kpop" target="_blank">GitHub Profile</a>
+      <p>Where I make, test, and build projects.</p>
+    </div>
+
+    <div class="link-card">
+      <a href="https://open.spotify.com/user/31dqjjdh6z7iv6h2uicfxpzorwpi?si=e1304dc650564a56" target="_blank">Spotify Profile</a>
+      <p>My music world 🎶</p>
+    </div>
+
+    <div class="link-card">
+      <a href="https://open.spotify.com/playlist/6NzQaVaofrf9kpRCx0sKkj" target="_blank">KPDH Best Songs Playlist</a>
+    </div>
+
+    <div class="link-card">
+      <a href="https://open.spotify.com/playlist/6z81HIUuSRHymGh8D5lX1t" target="_blank">KPDH All Songs Playlist</a>
+    </div>
+
+    <p class="discord-user">Discord Username: <b>jinu_kpop</b></p>
+  </section>
+
+  <!-- Achievement Popup -->
+  <div id="achievement-popup" class="hidden"></div>
+
+  <!-- Funny GIF Section -->
+  <img src="assets/funny.gif" alt="Funny" class="funny" />
+
+  <script src="js/app.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/achievements.js"></script>
+
 </body>
 </html>
