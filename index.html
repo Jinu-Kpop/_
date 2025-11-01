@@ -1,40 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jinu Kpop - Tech & KPDH Fan</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jinu Kpop — Cute Futuristic</title>
+
+  <!-- Google fonts + icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- main stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <canvas id="starfield"></canvas>
+  <!-- canvas starfield -->
+  <canvas id="stars"></canvas>
 
-  <div class="container floating">
-    <img src="assets/logo.png" alt="Logo" class="logo" id="logo">
-    <h1>Jinu Kpop</h1>
-    <h2>Tech Lover & KPDH Fanatic</h2>
-
-    <div class="buttons">
-      <a class="btn" href="https://discord.gg/UEFJc6AdS9" target="_blank">Discord</a>
-      <a class="btn" href="https://github.com/Jinu-Kpop" target="_blank">GitHub</a>
-      <a class="btn" href="https://open.spotify.com/user/31dqjjdh6z7iv6h2uicfxpzorwpi?si=a4c07eab4856416d" target="_blank">Spotify</a>
+  <!-- Top bar -->
+  <header class="topbar">
+    <div id="logo" class="logo" title="Jinu Kpop - click me">
+      <!-- prefer local assets/logo.png; fallback to Imgur -->
+      <img id="logo-img" src="assets/logo.png" alt="logo" onerror="this.src='https://i.imgur.com/BfvICIa.png'">
     </div>
 
-    <footer>Connect with me: <strong>Discord: jinu_kpop</strong></footer>
-  </div>
+    <div class="top-actions">
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+    </div>
+  </header>
 
-  <div id="music-bubble" class="music-bubble">
-    <button id="playPause">▶</button>
-    <input type="range" id="volume" min="0" max="1" step="0.01" value="0.6">
-    <span id="songName">No song</span>
-  </div>
+  <!-- Main card -->
+  <main class="card" role="main">
+    <section class="hero">
+      <h1>Jinu Kpop</h1>
+      <p class="subtitle">Cute Futuristic • Tech Lover • KPDH Fan</p>
 
-  <div id="funModal" class="fun-modal">
-    <div class="fun-content">
-      <img src="assets/fun.png" alt="Fun">
+      <div class="links">
+        <a class="link" href="https://discord.gg/UEFJc6AdS9" target="_blank"><i class="fa-brands fa-discord"></i> IDK Community</a>
+        <a class="link" href="https://github.com/Jinu-Kpop" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a class="link" href="https://open.spotify.com/playlist/6NzQaVaofrf9kpRCx0sKkj?si=82f9aaec729b46f0" target="_blank"><i class="fa-brands fa-spotify"></i> KPDH Popular Songs</a>
+      </div>
+
+      <p class="hint">This site auto-loads songs from <code>songs.json</code>. If there's exactly one song it will try to autoplay and loop it.</p>
+    </section>
+
+    <footer class="foot">Connect: <strong>Discord: jinu_kpop</strong></footer>
+  </main>
+
+  <!-- Secret modal (fun image) -->
+  <div id="secret" class="secret" hidden aria-hidden="true">
+    <div class="secret-inner">
+      <img src="assets/fun.png" alt="Fun" onerror="this.src='https://i.imgur.com/jAJz9Jz.png'">
+      <h3>🎉 Secret Fan Card</h3>
+      <p>You discovered a hidden gift. Use code <strong>JINU-STAR</strong> ❤️</p>
+      <button id="secret-close" class="btn">Close</button>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Draggable Floating Bubble Player -->
+  <div id="bubble" class="bubble" aria-hidden="true" hidden>
+    <div class="bubble-top">
+      <div id="drag-handle" class="drag">☰</div>
+      <div id="song-name" class="song-name">No song loaded</div>
+      <button id="bubble-close" class="icon-btn" title="Hide player"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="bubble-controls">
+      <button id="prev" class="icon-btn" title="Previous"><i class="fa-solid fa-backward-step"></i></button>
+      <button id="play" class="play-btn" title="Play/Pause"><i class="fa-solid fa-play"></i></button>
+      <button id="next" class="icon-btn" title="Next"><i class="fa-solid fa-forward-step"></i></button>
+    </div>
+
+    <div class="bubble-volume">
+      <button id="vol-down" class="icon-btn">-</button>
+      <input id="vol" type="range" min="0" max="1" step="0.01" value="0.85" aria-label="Volume">
+      <button id="vol-up" class="icon-btn">+</button>
+    </div>
+  </div>
+
+  <!-- include script -->
+  <script src="script.js" type="module"></script>
 </body>
 </html>
