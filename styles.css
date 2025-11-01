@@ -1,86 +1,98 @@
-<!-- FILE: styles.css -->
-#starfield{position:fixed;inset:0;z-index:0}
-.shooting-stars{position:fixed;inset:0;z-index:1;pointer-events:none}
-.app{position:relative;z-index:5;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 
+body {
+  background: radial-gradient(circle at center, #ffe6f0, #ffb3d9, #cc99ff);
+  color: #333;
+  overflow: hidden;
+  height: 100vh;
+}
 
-.topbar{position:fixed;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center;z-index:10}
-.logo{cursor:pointer;user-select:none;padding:10px 14px;border-radius:12px;background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));backdrop-filter: blur(6px);box-shadow: 0 6px 20px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
-.logo-inner{font-weight:800;letter-spacing:0.6px}
-.logo-inner span{color:var(--accent)}
+.container {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
+.logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 10px;
+  animation: float 3s ease-in-out infinite;
+}
 
-.icon-btn{background:transparent;border:none;color:var(--text);padding:10px;border-radius:10px;margin-left:8px;cursor:pointer;font-size:16px}
-.icon-btn:focus{outline:2px solid rgba(0,212,255,0.2)}
+h1 { font-size: 3rem; color: #9900cc; }
+h2 { font-size: 1.5rem; color: #ff66cc; margin-bottom: 30px; }
 
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
 
-.card{width:min(980px,94%);padding:30px;border-radius:18px;box-shadow:0 20px 60px rgba(2,6,23,0.6);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
-.floating-glass{transform-origin:center}
-.title{font-size:2.6rem;margin:6px 0}
-.subtitle{color:var(--muted);margin-bottom:18px}
+.btn {
+  background: linear-gradient(135deg, #ff66cc, #cc99ff);
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.btn:hover { transform: scale(1.1); }
 
+footer { margin-top: 30px; color: #9900cc; }
 
-.links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
-.link-card{list-style:none}
-.link-btn{display:block;padding:12px;border-radius:12px;text-decoration:none;color:var(--text);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);transition:transform .25s ease, box-shadow .25s ease}
-.link-btn i{font-size:20px;margin-right:10px}
-.link-btn .label{font-weight:700}
-.link-btn .desc{display:block;color:var(--muted);font-size:0.9rem;margin-top:6px}
-.link-btn:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,0.5)}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
 
+/* Music bubble */
+.music-bubble {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: move;
+  z-index: 5;
+}
 
-.music-controls{margin-top:18px;padding:12px;border-radius:10px;background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02)}
-.music-row{display:flex;gap:12px;align-items:center}
-.btn{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;color:#002;padding:8px 12px;border-radius:10px;font-weight:700;cursor:pointer}
-.btn.small{padding:8px 14px}
-.music-inputs{display:flex;flex-direction:column;gap:8px;width:100%}
-.music-inputs input{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text)}
-.embed-wrap{margin-top:10px}
-#spotify-embed{border-radius:8px;border:1px solid rgba(255,255,255,0.04)}
-#custom-audio{width:100%;display:none}
+.music-bubble button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
 
+#starfield {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 0;
+}
 
-.card-footer{text-align:center;margin-top:12px;color:var(--muted)}
+.fun-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
 
-
-.secret-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:50}
-.secret-inner{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));padding:22px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);text-align:center}
-
-
-/* floating micro animation */
-.floating-glass{animation:floaty 6s ease-in-out infinite}
-@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-
-
-/* Shooting star pseudo visuals (small particles using gradient) */
-.shooting-stars::before{content:'';position:absolute;left:10%;top:20%;width:4px;height:120px;background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0));transform:rotate(-30deg);filter:blur(2px);opacity:.08;animation:shoot 6s linear infinite}
-@keyframes shoot{0%{transform:translateX(-300px) translateY(-120px) rotate(-30deg);opacity:0}10%{opacity:1}100%{transform:translateX(1400px) translateY(400px) rotate(-30deg);opacity:0}}
-
-
-/* Theme light mode */
-:root.light{--bg-1:#f8fbff;--bg-2:#eaf6ff;--glass:rgba(0,0,0,0.04);--accent:#0066ff;--accent-2:#00b3ff;--text:#012;--muted:rgba(1,34,51,0.6)}
-body.light{background:linear-gradient(180deg,#f3fbff 0%, #eef9ff 60%);color:var(--text)}
-body.light .card{box-shadow:0 20px 60px rgba(6,20,40,0.05);border:1px solid rgba(0,10,30,0.03)}
-
-
-/* responsiveness */
-@media (max-width:600px){.title{font-size:1.6rem}.link-btn{padding:10px}.topbar{left:10px;right:10px}}
-
-
-
-
-/* small flashy neon when ultra mode */
-.ambient-ultra{box-shadow:0 0 40px rgba(138,0,255,0.25), inset 0 0 20px rgba(0,212,255,0.06)}
-
-
-
-
-/* accessibility focus */
-.link-btn:focus{outline:2px dashed rgba(0,212,255,0.25)}
-
-
-
-
-/* small easter egg highlight */
-.pulse-easter{animation:eggPulse 1.4s ease-in-out infinite}
-@keyframes eggPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.fun-modal img {
+  width: 300px;
+  border-radius: 20px;
+}
