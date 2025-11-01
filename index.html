@@ -1,69 +1,40 @@
-<!-- FILE: index.html -->
-</a>
-</article>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jinu Kpop - Tech & KPDH Fan</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="starfield"></canvas>
 
+  <div class="container floating">
+    <img src="assets/logo.png" alt="Logo" class="logo" id="logo">
+    <h1>Jinu Kpop</h1>
+    <h2>Tech Lover & KPDH Fanatic</h2>
 
-<article class="link-card">
-<a class="link-btn" href="#" id="spotify-open"><i class="fa-brands fa-spotify"></i>
-<div class="label">Spotify</div>
-<div class="desc">Open my Spotify profile or playlists — press to set your own link.</div>
-</a>
-</article>
+    <div class="buttons">
+      <a class="btn" href="https://discord.gg/UEFJc6AdS9" target="_blank">Discord</a>
+      <a class="btn" href="https://github.com/Jinu-Kpop" target="_blank">GitHub</a>
+      <a class="btn" href="https://open.spotify.com/user/31dqjjdh6z7iv6h2uicfxpzorwpi?si=a4c07eab4856416d" target="_blank">Spotify</a>
+    </div>
 
+    <footer>Connect with me: <strong>Discord: jinu_kpop</strong></footer>
+  </div>
 
-<article class="link-card">
-<a class="link-btn" href="https://open.spotify.com/playlist/6NzQaVaofrf9kpRCx0sKkj?si=82f9aaec729b46f0" target="_blank">
-<i class="fa-solid fa-music"></i>
-<div class="label">KPDH Popular Songs</div>
-<div class="desc">My curated favorites — updated regularly.</div>
-</a>
-</article>
+  <div id="music-bubble" class="music-bubble">
+    <button id="playPause">▶</button>
+    <input type="range" id="volume" min="0" max="1" step="0.01" value="0.6">
+    <span id="songName">No song</span>
+  </div>
 
+  <div id="funModal" class="fun-modal">
+    <div class="fun-content">
+      <img src="assets/fun.png" alt="Fun">
+    </div>
+  </div>
 
-<article class="link-card">
-<a class="link-btn" href="https://open.spotify.com/playlist/6z81HIUuSRHymGh8D5lX1t?si=e81c056c630741e1" target="_blank">
-<i class="fa-solid fa-list"></i>
-<div class="label">All KPDH Songs</div>
-<div class="desc">Complete collection — for deep dives and playlists.</div>
-</a>
-</article>
-</div>
-
-
-<div id="music-controls" class="music-controls" data-spotify="https://open.spotify.com/embed/playlist/6NzQaVaofrf9kpRCx0sKkj">
-<div class="music-row">
-<button class="btn small" id="play-pause"><i class="fa-solid fa-play"></i> Play</button>
-<div class="music-inputs">
-<input id="spotify-link" placeholder="Paste Spotify share link or embed URL" aria-label="Spotify link">
-<input id="custom-audio-link" placeholder="Or paste raw MP3 URL (GitHub raw link)" aria-label="Custom audio link">
-</div>
-</div>
-<div class="embed-wrap">
-<iframe id="spotify-embed" src="" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-<audio id="custom-audio" controls crossorigin="anonymous"></audio>
-</div>
-</div>
-
-
-<footer class="card-footer">
-<small>Connect: <strong>Discord: jinu_kpop</strong> • Built with ❤️</small>
-</footer>
-</section>
-
-
-<!-- hidden easter egg modal -->
-<div id="secret-modal" class="secret-modal" hidden>
-<div class="secret-inner">
-<h3>🎉 Secret Fan Card</h3>
-<p>Welcome to the inner circle — you found an easter egg! Use code <strong>JINU-STAR</strong> for a surprise.</p>
-<button class="btn" id="close-secret">Close</button>
-</div>
-</div>
-
-
-</main>
-
-
-<script src="script.js" type="module"></script>
+  <script src="script.js"></script>
 </body>
 </html>
